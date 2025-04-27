@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { orthographyUseCase, prosConsStreamUseCase } from '@use-cases/index';
+import { orthographyUseCase, prosConsStreamUseCase, translateStreamUseCase } from '@use-cases/index';
 import { from } from 'rxjs';
 
 
@@ -13,5 +13,8 @@ export class OpenAiService {
 
   prosConsStreamDiscusser(text: string, signal: AbortSignal) {
     return prosConsStreamUseCase(text, signal);
+  }
+  translate(text: string, lang: string, signal: AbortSignal) {
+    return translateStreamUseCase(text, lang, signal);
   }
 }
