@@ -21,18 +21,18 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
 })
 export default class ImageGenerationPageComponent {
   public messages = signal<Message[]>([]);
-    public isLoading = signal(false);
-    public openAiService = inject( OpenAiService );
+  public isLoading = signal(false);
+  public openAiService = inject(OpenAiService);
 
 
 
-    handleMessage( prompt: string ) {
-      this.isLoading.set( true );
-      this.messages.update((prev) => [...prev, { text: prompt, isGpt: false }]);
-      this.openAiService.imageGereneration( prompt ).subscribe(resp => {
-        this.isLoading.set( false );
-        if(!resp) return;
-        this.messages.update((prev) => [...prev, { text: resp.alt, isGpt: true, imageInfo: resp }]);
-      });
-    }
- }
+  handleMessage(prompt: string) {
+    this.isLoading.set(true);
+    this.messages.update((prev) => [...prev, { text: prompt, isGpt: false }]);
+    this.openAiService.imageGereneration(prompt).subscribe(resp => {
+      this.isLoading.set(false);
+      if (!resp) return;
+      this.messages.update((prev) => [...prev, { text: resp.alt, isGpt: true, imageInfo: resp }]);
+    });
+  }
+}
